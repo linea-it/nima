@@ -86,8 +86,6 @@ RUN set -ex \
 
 RUN cd $APP_PATH \
         && rm requirements.txt \
-        && rm install_public.sh \
-        && rm install_user.sh \
         && rm $APP_PATH/NIMAv7_public.tar.gz \
         && rm NIMAv7_user.tar.gz 
 
