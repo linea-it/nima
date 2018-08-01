@@ -3,7 +3,7 @@ FROM python:2.7
 ENV APP_PATH=/app
 ENV NIMA_PUBLIC=${APP_PATH}/NIMAv7_public
 ENV NIMA_USER=${APP_PATH}/NIMAv7_user
-ENV DIR_RESULTS=/results 
+ENV DIR_RESULTS=/data
 ENV DIR_INPUTS=/data
 
 RUN apt-get update && apt-get install -y  \
@@ -90,4 +90,4 @@ RUN cd $APP_PATH \
         && rm NIMAv7_user.tar.gz 
 
 
-ENTRYPOINT /bin/bash
+# ENTRYPOINT python ${NIMA_USER}/executeNIMAv7.py
