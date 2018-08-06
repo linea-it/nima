@@ -140,14 +140,14 @@ def NIMAmanager(inputParametersFile):
             dest_file = os.path.join(result_folder, f)
             shutil.move(os.path.join(asteroidFolder, f), dest_file)
 
+            os.chmod(dest_file, 0776)
+
             result_files.append(dest_file)
 
             print("File: [ %s ] Size: [ %s ]" %(dest_file, os.path.getsize(dest_file)))
             
         except Exception as e:
             print(e)
-
-    # subprocess.call(["chmod", "-R", "775", resultFolder])
 
     return result_files
 
