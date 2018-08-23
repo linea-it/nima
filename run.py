@@ -137,14 +137,16 @@ def NIMAmanager(inputParametersFile):
 
     for f in files:
         try:
-            dest_file = os.path.join(result_folder, f)
-            shutil.move(os.path.join(asteroidFolder, f), dest_file)
+            # Ignorar o Link Simbolico para o arquivo jplbsp
+            if f != os.path.basename(jplbsp):
+                dest_file = os.path.join(result_folder, f)
+                shutil.move(os.path.join(asteroidFolder, f), dest_file)
 
-            os.chmod(dest_file, 0776)
+                os.chmod(dest_file, 0776)
 
-            result_files.append(dest_file)
+                result_files.append(dest_file)
 
-            print("File: [ %s ] Size: [ %s ]" %(dest_file, os.path.getsize(dest_file)))
+                print("File: [ %s ] Size: [ %s ]" %(dest_file, os.path.getsize(dest_file)))
             
         except Exception as e:
             print(e)
@@ -162,7 +164,7 @@ if __name__ == "__main__":
     files = NIMAmanager(parametersFile)
     
     # Check Results 
-    if len(files) == 19:
+    if len(files) == 18:
         status = "SUCCESS"
     else:
         status = "WARNING"
