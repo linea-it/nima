@@ -1,8 +1,10 @@
 from datetime import datetime
 import numpy as np
+import spiceypy as spice
 import subprocess
 import os
 import shutil
+import sys
 
 #Function to execute scripts, the parameters must be an numpy array 
 #with specific and ordered values
@@ -11,18 +13,73 @@ import shutil
 #and par2 is the parameter for creation of orbital elements file
 #errors for this example: [name, number, par1, par2]
 #[number, name, par2, par1], [number, par1, name, par2], etc.
-def executeScript(script, parameters):
+def executeScript(script, parameters, log_file):
 
     strParameters = '\n'.join(map(str, parameters))
 
     #open the script .sh with the necessary configurations
-    p = subprocess.Popen(script, stdin=subprocess.PIPE, shell=True)
+    p = subprocess.Popen(script, stdin=subprocess.PIPE, shell=True, stdout=log_file)
 
     #set the input parameters to the script
     p.communicate(strParameters)
 
 
-def NIMAmanager(inputParametersFile):
+#Function to search a substring (between two keywords) inside a string
+def find_between(text, key1, key2):
+    try:
+        start = text.index(key1) + len(key1)
+        end = text.index(key2, start )
+        return text[start:end]
+    except ValueError:
+        return ""
+
+
+#Function to get idspk from bsp JPL (only for JPL)
+def findIDSPK(bspFile):
+    #loading bsp file
+    spice.furnsh(bspFile)
+
+    #Number lines to extract comments of header from JPL bsp files
+    nLines = 74
+
+    #keyword to search spk value
+    key = 'Target SPK ID   :'
+    lenKey = len(key)
+
+    spk = ''
+    m, header, flag = spice.dafec(1, nLines)
+    for row in header:
+        if row[:lenKey] == key:
+            spk = row[lenKey:].strip()
+            break
+                
+    return spk
+
+
+#Function to add spkid and object name associated to sh file
+def addSPK2file(name, spk, filename):
+    shFile = open(filename, 'r+')
+    content = shFile.readlines()
+
+    listSPK = []
+    for line in content:
+        code = find_between(line, 'idspk=', ' ;fi')
+        if code:
+            listSPK.append(code)
+
+    #2 000 000 < spk of number objects < 3 000 000
+    if int(spk)>3000000 and spk not in listSPK:
+        n = len(listSPK) + 4
+        text = '        if [ "$aster" = "' + name + '" ]; then idspk=' + spk + ' ;fi\n'
+
+        content.insert(n, text)
+        shFile.seek(0)
+        shFile.writelines(content)
+    shFile.close()
+
+
+
+def NIMAmanager(inputParametersFile, log_file):
     parameters, comment = np.loadtxt(inputParametersFile, dtype='str', delimiter='|', converters={0: lambda s: s.strip()}, unpack=True)
 
 
@@ -93,45 +150,55 @@ def NIMAmanager(inputParametersFile):
 
 
     #============================= EXECUTE ALL SCRIPTS NIMA =============================
-    
+
+    # Fix para Objetos que nao possuem numero. 
+    idspk = findIDSPK(jplbsp)
+    print("IDSPK: %s" % idspk)
+
+    # TODO corrigir o bug
+    # idspkFile = os.path.join(pathNIMAuser, 'idspk.sh')
+
+    # addSPK2file(name, idspk, idspkFile)
+   
     # ========================== sc_AstDySMPC2NIMA ==========================
-    executeScript("./sc_AstDySMPC2NIMA.sh", np.concatenate([parameters[5:7], parameters[3:5]]) )
+    executeScript("./sc_AstDySMPC2NIMA.sh", np.concatenate([parameters[5:7], parameters[3:5]]), log_file)
 
     # ============================== sc_esoopd ==============================
-    executeScript("./sc_esoopd.sh", parameters[5:7])
+    executeScript("./sc_esoopd.sh", parameters[5:7], log_file)
     
     # =============================== sc_cat ================================
-    executeScript("./sc_cat.sh", np.insert(parameters[7:8],0,number))
+    executeScript("./sc_cat.sh", np.insert(parameters[7:8],0,number), log_file)
 
     # ============================== sc_merge ===============================
 
-    executeScript("./sc_merge.sh", np.insert(parameters[8:10],0,number))
+    executeScript("./sc_merge.sh", np.insert(parameters[8:10],0,number), log_file)
 
     # =============================== sc_fit ================================
-    executeScript("./sc_fit.sh", np.insert(parameters[10:17],0,number))
+    executeScript("./sc_fit.sh", np.insert(parameters[10:17],0,number), log_file)
 
     # ============================= sc_importbsp ============================
-    executeScript("./sc_importbsp.sh", np.append(parameters[5:7],jplbsp))
+    executeScript("./sc_importbsp.sh", np.append(parameters[5:7],jplbsp), log_file)
 
     # ============================ sc_diffjplomc ============================
-    executeScript("./sc_diffjplomcPython.sh", np.insert(parameters[17:31],0,number))
+    executeScript("./sc_diffjplomcPython.sh", np.insert(parameters[17:31],0,number), log_file)
 
     
     # ============================== sc_makebsp =============================
-    executeScript("./sc_makebsp.sh", np.insert(parameters[31:38],0,number))
+    executeScript("./sc_makebsp.sh", np.insert(parameters[31:38],0,number), log_file)
 
     # =============================== sc_ephem ==============================
-    executeScript("./sc_ephem.sh", np.insert(parameters[38:],0,number))
+    executeScript("./sc_ephem.sh", np.insert(parameters[38:],0,number), log_file)
+
 
     # TODO: COPIAR ARQUIVO DE DUPLICIDADE
 
     # ============================ move results ==============================
+    print("============================ move results ==============================")
 
     result_folder = os.environ.get("DIR_RESULTS")
     print("Result Folder: %s" % result_folder)
 
     files = os.listdir(asteroidFolder)
-    print("Result Files: %s" % len(files))
 
     result_files = []
 
@@ -139,7 +206,14 @@ def NIMAmanager(inputParametersFile):
         try:
             # Ignorar o Link Simbolico para o arquivo jplbsp
             if f != os.path.basename(jplbsp):
-                dest_file = os.path.join(result_folder, f)
+
+                filename = f
+                if f.find("nima.bsp") != -1:
+                    print("Rename BSP NIMA")
+                    filename = "%s_nima.bsp" % name
+
+                dest_file = os.path.join(result_folder, filename)
+
                 shutil.move(os.path.join(asteroidFolder, f), dest_file)
 
                 os.chmod(dest_file, 0776)
@@ -155,22 +229,21 @@ def NIMAmanager(inputParametersFile):
 
 if __name__ == "__main__":
 
-    # parametersFile = raw_input("Write the file name with all NIMA parameters: ")
-
     parametersFile = os.path.join(os.environ.get("DIR_INPUTS"), "input.txt")
+    log_file = os.path.join(os.environ.get("DIR_INPUTS"), "nima.log")
+
+    orig_stdout = sys.stdout
+    f = open(log_file, 'w')
+    sys.stdout = f
 
     start_time = datetime.now()
 
-    files = NIMAmanager(parametersFile)
+    files = NIMAmanager(parametersFile, log_file=f)
     
-    # Check Results 
-    if len(files) == 18:
-        status = "SUCCESS"
-    else:
-        status = "WARNING"
-
     end_time = datetime.now()
 
     print "Duration: ", end_time - start_time
-    print "Execution Status: %s" % status
 
+    sys.stdout = orig_stdout
+    f.close()
+    exit(0)

@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y  \
                 gnuplot \
                 ghostscript \
                 libfreetype6-dev \
+                pkg-config \
                 libxft-dev \
                 vim \
             && rm -rf /var/lib/apt/lists/*
@@ -22,9 +23,10 @@ WORKDIR $APP_PATH
 
 RUN pip install --upgrade pip 
 
-RUN pip install numpy==1.11.0
+RUN pip install numpy==1.11.0 \
+                matplotlib==1.5.1 \
+                spiceypy==2.1.2
 
-RUN pip install matplotlib==1.5.1
 
 ADD requirements.txt $APP_PATH
 RUN pip install -r requirements.txt
