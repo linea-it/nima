@@ -23,9 +23,7 @@ WORKDIR $APP_PATH
 
 RUN pip install --upgrade pip 
 
-RUN pip install numpy==1.11.0 \
-                matplotlib==1.5.1 \
-                spiceypy==2.1.2
+RUN pip install numpy==1.11.0 
 
 
 ADD requirements.txt $APP_PATH

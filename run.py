@@ -18,7 +18,7 @@ def executeScript(script, parameters, log_file):
     strParameters = '\n'.join(map(str, parameters))
 
     #open the script .sh with the necessary configurations
-    p = subprocess.Popen(script, stdin=subprocess.PIPE, shell=True, stdout=log_file)
+    p = subprocess.Popen(script, stdin=subprocess.PIPE, shell=True, stdout=log_file, stderr=log_file)
 
     #set the input parameters to the script
     p.communicate(strParameters)
@@ -152,14 +152,17 @@ def NIMAmanager(inputParametersFile, log_file):
     #============================= EXECUTE ALL SCRIPTS NIMA =============================
 
     # Fix para Objetos que nao possuem numero. 
-    idspk = findIDSPK(jplbsp)
-    print("IDSPK: %s" % idspk)
+    if (name == number) :
+        idspk = findIDSPK(jplbsp)
+        print("IDSPK: %s" % idspk)
 
-    # TODO corrigir o bug
-    # idspkFile = os.path.join(pathNIMAuser, 'idspk.sh')
+        idspkFile = os.path.join(pathNIMAuser, 'idspk.sh')
 
-    # addSPK2file(name, idspk, idspkFile)
-   
+        addSPK2file(name, idspk, idspkFile)
+    
+        # Only for debug
+        # shutil.copy2(idspkFile, os.path.join(os.environ.get("DIR_RESULTS"), 'idspk.sh' ))
+
     # ========================== sc_AstDySMPC2NIMA ==========================
     executeScript("./sc_AstDySMPC2NIMA.sh", np.concatenate([parameters[5:7], parameters[3:5]]), log_file)
 
