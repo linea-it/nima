@@ -14,6 +14,8 @@ RUN apt-get update && apt-get install -y  \
                 libfreetype6-dev \
                 pkg-config \
                 libxft-dev \
+                imagemagick \
+                gnuplot \
                 vim \
             && rm -rf /var/lib/apt/lists/*
 
