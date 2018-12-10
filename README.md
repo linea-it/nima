@@ -24,3 +24,7 @@ para rodar o run.py em outro diretório
 docker run -it --rm --name nima --volume /home/glauber/nima/data:/data --volume /home/glauber/nima/teste:/app/teste  linea/nima:7 python teste/run.py
 ```
 
+## Para fazer alteracoes nos script NIMA_V7_user
+é necessario descompactar o diretorio nima_v7_user_compiled.tar.gz
+fazer a alteracao necessária, compactar novamente o diretório com o mesmo nome, 
+remover o diretório descompactado e em seguida rodar o build da imagem.
