@@ -6,7 +6,7 @@ Github: https://github.com/linea-it/nima
 
 Docker Cloud: https://cloud.docker.com/u/linea/repository/docker/linea/nima
 
-## Requisitos 
+## Requirements 
 Docker: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
 
 ## Baixar a imagem do docker cloud. 
