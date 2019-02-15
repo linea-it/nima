@@ -43,9 +43,12 @@ Explicando o comando.
 ```python run.py``` Comando que sera executado dentro container. 
 
 
-## Script ```run.py```
+### Script ```run.py```
 Este script é responsavel pela execução de todas os programas do NIMA e dos scripts customizados que estão no diretório ```/app/NIMAv7_user```, no inicio da execução procura pelo arquivo **input.txt** que contem os parametros e a lista de inputs,
 o output da execução fica no arquivo de log *nima.log*.
+
+### Execução em paralelo ###
+Para executar em paralelo varios objetos, basta criar varias instancias do container, cada uma com um diretório de objeto. nesta imagem não é possivel paralelizar o programa NIMA em si, mais o container funciona de forma isolada podendo ter varios rodando simultaneamente. 
 
 ## Inputs ##
 São necessários 5 inputs, que devem ter o nome do Target sem espaços e sem "_" + a extensão. exemplo para o target **1999 RB216** os inputs são:
