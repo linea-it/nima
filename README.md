@@ -74,8 +74,8 @@ TODO:
 ### Observações ###
 TODO:
 
-### Parâmetros Orbitais ###
-TODO:
+### Orbital elements ###
+Orbital elements are the parameters required to uniquely identify a specific orbit. It is automatically downloaded with regular frequency (once a month) from Asteroids Dynamic Site (AstDyS) or Minor Planet Center (MPC).
 
 ### BSP ###
 TODO:
