@@ -69,7 +69,14 @@ A descrição dos parâmetros está no próprio arquivo, e pode ser vista [neste
 - Os 5 primeiros parâmetros, são referentes ao diretório de inputs **não deve ser alterado**.
 
 ### Astrometric positions ###
-The user must provide a ascii file per object with astrometric positions which were determined using some astrometric package. See the example for the case [1999RB216](https://github.com/linea-it/nima/blob/master/example/1999RB216.txt) for knowing the format of this file.
+The user must provide a ascii file per object with astrometric positions which were determined using some astrometric package. See the example for the case [1999RB216](https://github.com/linea-it/nima/blob/master/example/1999RB216.txt) for knowing the format of this file. Follows the explanation of the columns:
+
+..* Right Ascension (cols 1-3) in HH MM SS format
+..* Declinations (cols 4-6) in DD MM SS format
+..* Magnitude determined (cols 7)
+..* Modified Julian Date (col 8)
+..* Code of the observer location (col 9) [IAU code](http://www.minorplanetcenter.net/iau/lists/ObsCodes.html)
+..* Reference stellar catalogue [MPC code](https://minorplanetcenter.net/iau/info/CatalogueCodes.html)
 
 ### Observações ###
 TODO:
