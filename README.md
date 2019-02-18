@@ -68,8 +68,8 @@ A descrição dos parâmetros está no próprio arquivo, e pode ser vista [neste
 - valor deve respeitar a quantidade de 67 caracteres.
 - Os 5 primeiros parâmetros, são referentes ao diretório de inputs **não deve ser alterado**.
 
-### Astrometria ###
-TODO: 
+### Astrometric positions ###
+The user must provide a ascii file per object with astrometric positions which were determined using some astrometric package. See the example for the case [1999RB216](https://github.com/linea-it/nima/blob/master/example/1999RB216.txt) for knowing the format of this file.
 
 ### Observações ###
 TODO:
