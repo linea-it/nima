@@ -6,6 +6,8 @@ Github: https://github.com/linea-it/nima
 
 Docker Cloud: https://cloud.docker.com/u/linea/repository/docker/linea/nima
 
+NIMA paper: https://www.aanda.org/articles/aa/abs/2015/12/aa26498-15/aa26498-15.html
+
 ## Requirements 
 Docker: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
 
@@ -78,11 +80,11 @@ The user must provide a ascii file per object with astrometric positions which w
 - Code of the observer location (col. 9). See [IAU code](http://www.minorplanetcenter.net/iau/lists/ObsCodes.html)
 - Reference stellar catalogue (col. 10). See [MPC code](https://minorplanetcenter.net/iau/info/CatalogueCodes.html)
 
-### Observações ###
-TODO:
+### Observations ###
+Positions determined from the observational history of objects. It can be downloaded from [AstDyS](http://hamilton.dm.unipi.it/astdys2/)
 
 ### Orbital elements ###
-Orbital elements are the parameters required to uniquely identify a specific orbit. It is automatically downloaded with regular frequency (**once a month**) from Asteroids Dynamic Site ([AstDyS](http://hamilton.dm.unipi.it/astdys2/)) or Minor Planet Center ([MPC](https://www.minorplanetcenter.net/)).
+Orbital elements are the parameters required to uniquely identify a specific orbit. It can be downloaded from [AstDyS](http://hamilton.dm.unipi.it/astdys2/) or [MPC](https://www.minorplanetcenter.net/).
 
 ### BSP ###
 TODO:
