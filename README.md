@@ -87,7 +87,7 @@ Positions already determined from the observational history of objects. It can b
 Orbital elements are the parameters required to uniquely identify a specific orbit. It can be downloaded from [AstDyS](http://hamilton.dm.unipi.it/astdys2/) or [MPC](https://www.minorplanetcenter.net/).
 
 ### Object ephemeris ###
-The state vector of a given body at any time is derived from [bsp](https://github.com/linea-it/nima/blob/master/example/1999RB216.bsp) (Binary Spacecraft and Planet Kernel) file which contents the object ephemeris. It can be downloaded from [JPL](https://www.jpl.nasa.gov/) using the script [smb_spk](ftp://ssd.jpl.nasa.gov/pub/ssd/SCRIPTS/smb_spk), for using this script it is necessary expect language.
+The state vector of a given body at any time is derived from [bsp](https://github.com/linea-it/nima/blob/master/example/1999RB216.bsp) (Binary Spacecraft and Planet Kernel) file which contents the object ephemeris. It can be downloaded from [JPL](https://www.jpl.nasa.gov/) using the script [smb_spk](https://github.com/linea-it/nima/blob/master/smb_spk), for using this script it is necessary expect language.
 
 ## Outputs ##
 Os arquivos gerados vão estar no mesmo diretório dos inputs. 
