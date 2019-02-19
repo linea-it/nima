@@ -81,7 +81,7 @@ The user must provide a ascii file per object with astrometric positions which w
 - Reference stellar catalogue (col. 10). See [MPC code](https://minorplanetcenter.net/iau/info/CatalogueCodes.html)
 
 ### Observations ###
-Positions determined from the observational history of objects. It can be downloaded from [AstDyS](http://hamilton.dm.unipi.it/astdys2/)
+Positions already determined from the observational history of objects. It can be downloaded from [AstDyS](http://hamilton.dm.unipi.it/astdys2/)
 
 ### Orbital elements ###
 Orbital elements are the parameters required to uniquely identify a specific orbit. It can be downloaded from [AstDyS](http://hamilton.dm.unipi.it/astdys2/) or [MPC](https://www.minorplanetcenter.net/).
