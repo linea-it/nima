@@ -87,7 +87,18 @@ Positions determined from the observational history of objects. It can be downlo
 Orbital elements are the parameters required to uniquely identify a specific orbit. It can be downloaded from [AstDyS](http://hamilton.dm.unipi.it/astdys2/) or [MPC](https://www.minorplanetcenter.net/).
 
 ### BSP ###
-TODO:
+The state vector of a given body at any time is derived from bsp (Binary Spacecraft and Planet Kernel) file which contents the object ephemeris. It can be downloaded from JPL using the scrip [smb_spk](ftp://ssd.jpl.nasa.gov/pub/ssd/SCRIPTS/smb_spk), for using this script it is necessary expect language.
+
+Once downloaded the script is recommended to convert it in executable
+
+```shell
+chmod +x smb_spk
+```
+Follow one example for getting the bsp file of object "2016 BP81" which contents the ephemeris from the year 2000 until 2030.
+
+```shell
+./smb_spk -b "2016 BP81;" 2000-Jan-01 2030-Jan-01 useremail@company 2016BP81.bsp
+```
 
 ## Outputs ##
 Os arquivos gerados vão estar no mesmo diretório dos inputs. 
