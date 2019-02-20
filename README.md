@@ -58,7 +58,7 @@ São necessários 5 inputs, que devem ter o nome do Target sem espaços e sem "_
 .
 └── 1999_RB216
     ├── input.txt
-http://hamilton.dm.unipi.it/~astdys2/mpcobs/numbered/137/137295.rwo    ├── 1999RB216.eq0
+    ├── 1999RB216.eq0
     ├── 1999RB216.rwo
     ├── 1999RB216.txt
     └── 1999RB216.bsp
