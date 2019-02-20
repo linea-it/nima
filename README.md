@@ -85,11 +85,26 @@ Positions already determined from the observational history of objects. [1999RB2
 
 Note that this files have to keep the original formats and the user only has to define the extension of file names: 
 
-+ *.rwo* for AstDys source 
++ *.rwo* for AstDyS source 
 + *.rwm* for MPC source
 
+AstDyS must be considered as the first option for getting the observation history (and orbital elements too).
+
 ### Orbital elements ###
-Orbital elements are the parameters required to uniquely identify a specific orbit. [1999RB216.eq0](https://github.com/linea-it/nima/blob/master/example/1999RB216.eq0) and [1999RC216.eqm](https://github.com/linea-it/nima/blob/master/example/1999RC216.eqm) are examples of observation files which were downloaded from [AstDyS](http://hamilton.dm.unipi.it/astdys2/) and [MPC](https://www.minorplanetcenter.net/) respectively.
+Orbital elements are the parameters required to uniquely identify a specific orbit. [1999RB216.eq0](https://github.com/linea-it/nima/blob/master/example/1999RB216.eq0) and [1999RC216.eqm](https://github.com/linea-it/nima/blob/master/example/1999RC216.eqm) are examples of files with orbital elements which were downloaded from [AstDyS](http://hamilton.dm.unipi.it/astdys2/) and [MPC](https://www.minorplanetcenter.net/) respectively.
+
+Note that in the case of MPC the user must set the file with one parameter per line where:
++ Provisional name
++ Number
++ Name
++ Reference gregorian date
++ Reference Julian date
++ perihelion distance (au)
++ absolute magnitude
++ ascending node (degrees)
++ eccentricity
++ semimajor axis (au)
+
 
 ### Object ephemeris ###
 The state vector of a given body at any time is derived from [bsp](https://github.com/linea-it/nima/blob/master/example/1999RB216.bsp) (Binary Spacecraft and Planet Kernel) file which contents the object ephemeris. Bsp files can be downloaded using the script [smb_spk](https://github.com/linea-it/nima/blob/master/smb_spk) through expect language.
