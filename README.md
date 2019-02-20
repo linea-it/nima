@@ -83,7 +83,7 @@ The user must provide a ascii file per object with astrometric positions which w
 ### Observational history ###
 Positions already determined from the observational history of objects. [1999RB216.rwo](https://github.com/linea-it/nima/blob/master/example/1999RB216.rwo) and [1999RC216.rwm](https://github.com/linea-it/nima/blob/master/example/1999RC216.rwm) are examples of observation files which were downloaded from [AstDyS](http://hamilton.dm.unipi.it/astdys2/) and [MPC](https://www.minorplanetcenter.net/) respectively.
 
-Note that this files have to keep the original formats and the user only has to define the extension of files: 
+Note that this files have to keep the original formats and the user only has to define the extension of file names: 
 
 + *.rwo* for AstDys source 
 + *.rwm* for MPC source
