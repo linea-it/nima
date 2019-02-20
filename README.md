@@ -109,6 +109,8 @@ In the case of MPC the user has to create a ascii file with the next parameters 
 12. Absolute magnitude
 13. Phase slope
 
+In the [site](https://minorplanetcenter.net/db_search/show_object?object_id=1999+RC216) are all the parameters above mentioned for the case of object *1999 RC216*.
+
 ### Object ephemeris ###
 The state vector of a given body at any time is derived from [bsp](https://github.com/linea-it/nima/blob/master/example/1999RB216.bsp) (Binary Spacecraft and Planet Kernel) file which contents the object ephemeris. Bsp files can be downloaded using the script [smb_spk](https://github.com/linea-it/nima/blob/master/smb_spk) through expect language.
 
