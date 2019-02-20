@@ -89,7 +89,7 @@ Note that this files have to keep the original formats and the user only has to 
 + *.rwm* for MPC source
 
 ### Orbital elements ###
-Orbital elements are the parameters required to uniquely identify a specific orbit. It can be downloaded from [AstDyS](http://hamilton.dm.unipi.it/astdys2/) or [MPC](https://www.minorplanetcenter.net/).
+Orbital elements are the parameters required to uniquely identify a specific orbit. [1999RB216.eq0](https://github.com/linea-it/nima/blob/master/example/1999RB216.eq0) and [1999RC216.eqm](https://github.com/linea-it/nima/blob/master/example/1999RC216.eqm) are examples of observation files which were downloaded from [AstDyS](http://hamilton.dm.unipi.it/astdys2/) and [MPC](https://www.minorplanetcenter.net/) respectively.
 
 ### Object ephemeris ###
 The state vector of a given body at any time is derived from [bsp](https://github.com/linea-it/nima/blob/master/example/1999RB216.bsp) (Binary Spacecraft and Planet Kernel) file which contents the object ephemeris. Bsp files can be downloaded using the script [smb_spk](https://github.com/linea-it/nima/blob/master/smb_spk) through expect language.
