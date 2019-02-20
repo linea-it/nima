@@ -95,18 +95,18 @@ Orbital elements are the parameters required to uniquely identify a specific orb
 
 In the case of MPC the user has to create a ascii file with the next parameters (one parameter per line):
 
-1. Provisional object name
-2. Object number ("no" in case of being unnumber object)
-3. Object name ("no" in case of don't have designation name)
-4. Reference gregorian date
-5. Reference Julian date
+1. Provisional name of object
+2. Object number ("no" if unnumbered object)
+3. Designation name of object ("no" if unnamed object)
+4. Epoch
+5. Epoch JD
 6. Argument of perihelion (degrees)
 7. Mean anomaly (degrees)
 8. Ascending node (degrees)
 9. Inclination (degrees)
 10. Eccentricity 
 11. Semimajor axis (au)
-12. absolute magnitude
+12. Absolute magnitude
 13. Phase slope
 
 ### Object ephemeris ###
