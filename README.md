@@ -80,8 +80,10 @@ The user must provide a ascii file per object with astrometric positions which w
 - Code of the observer location (col. 9). See [IAU code](http://www.minorplanetcenter.net/iau/lists/ObsCodes.html)
 - Reference stellar catalogue (col. 10). See [MPC code](https://minorplanetcenter.net/iau/info/CatalogueCodes.html)
 
-### Observations ###
+### Observational history ###
 Positions already determined from the observational history of objects. [1999RB216.rwo](https://github.com/linea-it/nima/blob/master/example/1999RB216.rwo) and [1999RC216.rwm](https://github.com/linea-it/nima/blob/master/example/1999RC216.rwm) are examples of observation files which were downloaded from [AstDyS](http://hamilton.dm.unipi.it/astdys2/) and [MPC](https://www.minorplanetcenter.net/) respectively.
+
+Note that this files keeps their formats and you only have to make sure the extension of files: *.rwo* and *.rwm* for AstDys and MPC source. 
 
 ### Orbital elements ###
 Orbital elements are the parameters required to uniquely identify a specific orbit. It can be downloaded from [AstDyS](http://hamilton.dm.unipi.it/astdys2/) or [MPC](https://www.minorplanetcenter.net/).
