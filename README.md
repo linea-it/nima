@@ -93,18 +93,21 @@ AstDyS must be considered as the first option for getting the observation histor
 ### Orbital elements ###
 Orbital elements are the parameters required to uniquely identify a specific orbit. [1999RB216.eq0](https://github.com/linea-it/nima/blob/master/example/1999RB216.eq0) and [1999RC216.eqm](https://github.com/linea-it/nima/blob/master/example/1999RC216.eqm) are examples of files with orbital elements which were downloaded from [AstDyS](http://hamilton.dm.unipi.it/astdys2/) and [MPC](https://www.minorplanetcenter.net/) respectively.
 
-Note that in the case of MPC the user must set the file with one parameter per line where:
-+ Provisional name
-+ Number
-+ Name
-+ Reference gregorian date
-+ Reference Julian date
-+ perihelion distance (au)
-+ absolute magnitude
-+ ascending node (degrees)
-+ eccentricity
-+ semimajor axis (au)
+In the case of MPC the user has to create a ascii file with the next parameters (one parameter per line):
 
+1. Provisional object name
+2. Object number ("no" in case of being unnumber object)
+3. Object name ("no" in case of don't have designation name)
+4. Reference gregorian date
+5. Reference Julian date
+6. Argument of perihelion (degrees)
+7. Mean anomaly (degrees)
+8. Ascending node (degrees)
+9. Inclination (degrees)
+10. Eccentricity 
+11. Semimajor axis (au)
+12. absolute magnitude
+13. Phase slope
 
 ### Object ephemeris ###
 The state vector of a given body at any time is derived from [bsp](https://github.com/linea-it/nima/blob/master/example/1999RB216.bsp) (Binary Spacecraft and Planet Kernel) file which contents the object ephemeris. Bsp files can be downloaded using the script [smb_spk](https://github.com/linea-it/nima/blob/master/smb_spk) through expect language.
