@@ -11,38 +11,37 @@ NIMA paper: https://www.aanda.org/articles/aa/abs/2015/12/aa26498-15/aa26498-15.
 ## Requirements 
 Docker: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
 
-## Baixar a imagem do docker cloud. 
+## Download the image from docker cloud.
 
 ```
 docker pull linea/nima:7
 ```
 
-## Execução
-Para executar é necessário ter um diretório na maquina host, com os inputs. este diretório sera 
-montado como volume no container. 
+## Execution
+To execute it is necessary to have a directory on the host machine, with the inputs. This directory will be mounted as volume in the container. 
 
-A execução é feita um Target por vez, cada target deve ter um diretório especifico com seus inputs. 
-neste exemplo o target é 1999 RB216, e o seu diretório é ~/1999_RB216. 
+Execution is done one Target at a time, each target must have a specific directory with its inputs. 
+In this example the target is 1999 RB216, and its directory is ~/1999_RB216. 
 
-este diretório de exemplo pode ser baixado [neste link](https://github.com/linea-it/nima/blob/master/example.zip)    
+This sample directory can be downloaded from this [link](https://github.com/linea-it/nima/blob/master/example.zip)    
 
 ```
 docker run -it --rm --volume ~/1999_RB216:/data linea/nima:7 python run.py
 ```
 
-Explicando o comando. 
+Explaining the command. 
 
-```docker run``` - Cria um contêiner a partir de uma imagem e executa um comando. 
+```docker run``` - It creates a container from an image and executes a command. 
 
-```-it``` - A execução sera interativa, mantem o terminal aberto. 
+```-it``` - The execution will be interactive, keeps the terminal open. 
 
-```--rm``` - Destroi o contêiner logo apos a execução do comando. 
+```--rm``` - It destroy the container as soon as the command is executed.
 
-```--volume``` - Este parâmetro permite montar um diretório da maquina Host para dentro do contêiner, ~/1999_RB216 neste caso é onde estão os inputs e onde vão ficar os resultados,  ":" indica o path do volume dentro do contêiner, para está imagem sempre deve ser /data.
+```--volume``` - This parameter allows to mount a Host machine directory into the container, ~/1999_RB216 in this case it is where the inputs are and where the results will be,  ":" indicates the path of volume inside the container, for this image should always be /data.
 
-```linea/nima:7``` : Imagem que sera usada na criação do contêiner. linea é o usuário no docker cloud, nima é o repositório, :7 indica a tag que sera usada. uma imagem pode ter varias tags, nesta imagem a tag representa a versão do NIMA. a lista de tags disponíveis pode ser encontrada [neste link](https://cloud.docker.com/u/linea/repository/docker/linea/nima/tags).
+```linea/nima:7``` : Image that will be used to create the container. linea is the user in docker cloud, nima is the repository, :7 indicates the tag which will be used. An image can have several tags, in this image the tag represents the version of NIMA. The list of available tags can be found in [This link](https://cloud.docker.com/u/linea/repository/docker/linea/nima/tags).
 
-```python run.py``` Comando que sera executado dentro container. 
+```python run.py``` Command that will be executed inside container.
 
 
 ### Script ```run.py```
