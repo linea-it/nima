@@ -113,7 +113,7 @@ In the [site](https://minorplanetcenter.net/db_search/show_object?object_id=1999
 The state vector of a given body at any time is derived from [bsp](https://github.com/linea-it/nima/blob/master/example/1999RB216.bsp) (Binary Spacecraft and Planet Kernel) file which contents the object ephemeris. Bsp files can be downloaded using the script [smb_spk](https://github.com/linea-it/nima/blob/master/smb_spk) through expect language.
 
 ## Outputs ##
-Os arquivos gerados vão estar no mesmo diretório dos inputs. 
+The output files will be in the same directory where inputs are.
 
 ```bash
 .
@@ -150,16 +150,16 @@ TODO: DESCREVER AS PRINCIPAIS SAÍDAS
 
 
 
-## Monitoramento ##
+## Monitoring ##
 
-Para acompanhar a execução do comando ```run.py```, todas as saídas deste script ficam em /data/nima.log, abra um novo terminal na maquina host e execute: 
+To monitor the execution of the command ```run.py```, all output from this script is in /data/nima.log, open a new terminal on the host machine and execute: 
 ```
 tail -f ~/1999_RB216/nima.log
 ```
 
-Para Monitorar os contêiner executando, utilize o comando:
+To monitor the execution of containers, use the command:
 ```docker ps```
-vai gerar uma saída como está:
+It will generate an output as:
 ```
 $ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
@@ -167,7 +167,8 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
 ```
 
-Também é possível verificar o consumo de recursos no host em tempo real. ```docker stats```, mostra informações como consumo de CPU, Memória e I/O e Rede.
+You can also check resource consumption on the host in real time. ```docker stats```, shows information such as CPU, Memory and I/O and Network consumption.
+
 ```
 docker stats
 ```
@@ -175,20 +176,21 @@ docker stats
 
 
 # Development
-## Build da Imagem Docker 
+## Build the Docker Image
 ```
 docker build -t linea/nima:7 .
 ```
 
-O script principal é o run.py para fazer alterações nele é preciso 
-copiá-lo para outra pasta editar e testar na outra pasta e depois sobre escrever o run.py na raiz. 
+The main script is *run.py* and to do changes in it you need to copy it to another folder, edit and test it in that folder and then overwrite the *run.py* in the root.
 
-para rodar o run.py em outro diretório 
+To execute *run.py* in another directory 
 ```
 docker run -it --rm --name nima --volume ~/data:/data --volume ~/teste:/app/teste  linea/nima:7 python teste/run.py
 ```
 
-## Para fazer alterações nos script NIMA_V7_user
-é necessário descompactar o diretório nima_v7_user_compiled.tar.gz
-fazer a alteração necessária, compactar novamente o diretório com o mesmo nome, 
-remover o diretório descompactado e em seguida rodar o build da imagem.
+## To do changes in NIMA_V7_user script
+1. nima_v7_user_compiled.tar.gz must be unpacked
+2. To do the necessary change
+3. Pack the directory with the same name
+4. Remove the unpacked directory
+5. Execute the build of image
