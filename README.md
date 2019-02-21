@@ -52,7 +52,7 @@ o output da execução fica no arquivo de log *nima.log*.
 Para executar em paralelo vários objetos, basta criar varias instancias do contêiner, cada uma com um diretório de objeto. nesta imagem não é possível paralelizar o programa NIMA em si, mais o contêiner funciona de forma isolada podendo ter vários rodando simultaneamente. 
 
 ## Inputs ##
-São necessários 5 inputs, que devem ter o nome do Target sem espaços e sem "_" mais a extensão. exemplo para o target **1999 RB216** os inputs são:
+5 inputs are required, they must have the target name (without spaces and without "_") and its extension. For example: the target **1999 RB216** has the next inputs:
 ```bash
 .
 └── 1999_RB216
@@ -64,13 +64,13 @@ São necessários 5 inputs, que devem ter o nome do Target sem espaços e sem "_
 ```
 
 ### input.txt ###
-A descrição dos parâmetros está no próprio arquivo, e pode ser vista [neste template](https://github.com/linea-it/nima/blob/master/input_template.txt). 
-- cada linha representa um parâmetro.
-- valor deve respeitar a quantidade de 67 caracteres.
-- Os 5 primeiros parâmetros, são referentes ao diretório de inputs **não deve ser alterado**.
+The description of the parameters is in the file itself, and it can be seen in [this template](https://github.com/linea-it/nima/blob/master/input_template.txt). 
+- Each line represents one parameter.
+- The value of the parameter has a limit of 67 characters
+- The first five parameters refer to the input directory **should not be changed!**.
 
 ### Astrometric positions ###
-The user must provide a ascii file per object with astrometric positions which were determined using some astrometric package. See the example for the case [1999RB216](https://github.com/linea-it/nima/blob/master/example/1999RB216.txt) for knowing the format of this file. The columns are composed by:
+The user must provide a ascii file per object with astrometric positions which were determined using some astrometric package. See the example for the case [1999RB216.txt](https://github.com/linea-it/nima/blob/master/example/1999RB216.txt) for knowing the format of this file. The columns are composed by:
 
 - Right Ascension (col. 1-3) in HH MM SS format
 - Declinations (col. 4-6) in DD MM SS format
