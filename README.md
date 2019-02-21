@@ -45,11 +45,10 @@ Explaining the command.
 
 
 ### Script ```run.py```
-Este script é responsável pela execução de todas os programas do NIMA e dos scripts customizados que estão no diretório ```/app/NIMAv7_user```, no inicio da execução procura pelo arquivo **input.txt** que contem os parâmetros e a lista de inputs,
-o output da execução fica no arquivo de log *nima.log*.
+This script is responsible for running all NIMA programs and custom scripts that are in the directory ```/app/NIMAv7_user```, the file **input.txt**, that contains the parameters and the list of inputs, is searched in the beginning of the execution, the execution output is in the log file *nima.log*
 
-### Execução em paralelo ###
-Para executar em paralelo vários objetos, basta criar varias instancias do contêiner, cada uma com um diretório de objeto. nesta imagem não é possível paralelizar o programa NIMA em si, mais o contêiner funciona de forma isolada podendo ter vários rodando simultaneamente. 
+### Parallel Execution ###
+To execute multiple objects in parallel, simply create multiple instances of the container, each one with an directory of object. in this image it is not possible to parallelize the NIMA program itself, but the container works in isolated form and may have several executions simultaneously.
 
 ## Inputs ##
 5 inputs are required, they must have the target name (without spaces and without "_") and its extension. For example: the target **1999 RB216** has the next inputs:
