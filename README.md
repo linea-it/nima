@@ -17,10 +17,10 @@ Docker: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-
 docker pull linea/nima:7
 ```
 
-## Execution
-To execute it is necessary to have a directory on the host machine, with the inputs. This directory will be mounted as volume in the container. 
+## Running
+To run NIMA through the docker it is necessary to have a directory on the host machine, with the inputs. This directory will be mounted as a volume in the container. 
 
-Execution is done one Target at a time, each target must have a specific directory with its inputs. 
+The code runs one Target at a time, each target must have a specific directory with its inputs. 
 In this example the target is 1999 RB216, and its directory is ~/1999_RB216. 
 
 This sample directory can be downloaded from this [link](https://github.com/linea-it/nima/blob/master/example.zip)    
@@ -35,9 +35,9 @@ Explaining the command.
 
 ```-it``` - The execution will be interactive, keeps the terminal open. 
 
-```--rm``` - It destroy the container as soon as the command is executed.
+```--rm``` - Removes the container as soon as the command is executed.
 
-```--volume``` - This parameter allows to mount a Host machine directory into the container, ~/1999_RB216 in this case it is where the inputs are and where the results will be,  ":" indicates the path of volume inside the container, for this image should always be /data.
+```--volume``` - This parameter allows to mount a Host machine directory into the container. In this case,  ~/1999_RB216 is where the inputs are and where the results will be,  ":" indicates the path of volume inside the container (for this image should always be /data).
 
 ```linea/nima:7``` : Image that will be used to create the container. linea is the user in docker cloud, nima is the repository, :7 indicates the tag which will be used. An image can have several tags, in this image the tag represents the version of NIMA. The list of available tags can be found in [This link](https://cloud.docker.com/u/linea/repository/docker/linea/nima/tags).
 
@@ -45,13 +45,13 @@ Explaining the command.
 
 
 ### Script ```run.py```
-This script is responsible for running all NIMA programs and custom scripts that are in the directory ```/app/NIMAv7_user```, the file **input.txt**, that contains the parameters and the list of inputs, is searched in the beginning of the execution, the execution output is in the log file *nima.log*
+This script is responsible for running all NIMA programs and custom scripts that are in the directory ```/app/NIMAv7_user```. The file **input.txt**, that contains the parameters and the list of inputs, is searched in the beginning of the execution and the respective output is in the log file *nima.log*
 
 ### Parallel Execution ###
-To execute multiple objects in parallel, simply create multiple instances of the container, each one with an directory of object. in this image it is not possible to parallelize the NIMA program itself, but the container works in isolated form and may have several executions simultaneously.
+To execute multiple objects in parallel, simply create multiple instances of the container, each one with a directory of objects. In this image it is not possible to parallelize the NIMA program itself, but the container works in isolated form and may have several executions simultaneously.
 
 ## Inputs ##
-5 inputs are required, they must have the target name (without spaces and without "_") and its extension. For example: the target **1999 RB216** has the next inputs:
+5 inputs are required, they must have the target name (without spaces and without "_") and its extension. For example: the target **1999 RB216** has the following inputs:
 ```bash
 .
 └── 1999_RB216
@@ -69,12 +69,12 @@ The description of the parameters is in the file itself, and it can be seen in [
 - The first five parameters refer to the input directory **should not be changed!**.
 
 ### Astrometric positions ###
-The user must provide a ascii file per object with astrometric positions which were determined using some astrometric package. See the example for the case [1999RB216.txt](https://github.com/linea-it/nima/blob/master/example/1999RB216.txt) for knowing the format of this file. The columns are composed by:
+The user must provide an ascii file per object with astrometric positions which were determined using some astrometric package. See the example for the case [1999RB216.txt](https://github.com/linea-it/nima/blob/master/example/1999RB216.txt) for knowing the format of this file. The columns are composed by:
 
 - Right Ascension (col. 1-3) in HH MM SS format
 - Declinations (col. 4-6) in DD MM SS format
-- Magnitude determined (col. 7)
-- Modified Julian Date (col. 8)
+- Observed magnitude (col. 7)
+- Julian Date (col. 8)
 - Code of the observer location (col. 9). See [IAU code](http://www.minorplanetcenter.net/iau/lists/ObsCodes.html)
 - Reference stellar catalogue (col. 10). See [MPC code](https://minorplanetcenter.net/iau/info/CatalogueCodes.html)
 
