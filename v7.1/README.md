@@ -1,4 +1,4 @@
-# NIMA v7
+# NIMA v7.1
 
 This image contains scripts and source codes to run NIMA v7. NIMA is a numerical code that improves the ephemerides of small bodies in the solar system from positions provided by the user and from the observational history of these bodies.
 
