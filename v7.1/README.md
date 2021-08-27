@@ -23,7 +23,7 @@ docker pull linea/nima:7
 To run NIMA through the docker it is necessary to have a directory on the host machine, with the inputs. This directory will be mounted as a volume in the container.
 
 The code runs one Target at a time, each target must have a specific directory with its inputs.
-In this example the target is 1999 RB216, and its directory is ~/1999_RB216.
+In this example the target is 1999 RB216, and its directory is ~/1999_RB216. 
 
 This sample directory can be downloaded from this [link](https://github.com/linea-it/nima/blob/master/example.zip)
 
@@ -33,21 +33,30 @@ docker run -it --rm --volume ~/1999_RB216:/data linea/nima:7 python run.py
 
 Explaining the command.
 
-` docker run ` - It creates a container from an image and executes a command.
+` ` ` docker run ` ` ` - It creates a container from an image and executes a command. 
 
-` -it ` - The execution will be interactive, keeps the terminal open.
+` ` ` -it ` ` ` - The execution will be interactive, keeps the terminal open. 
 
-` --rm ` - Removes the container as soon as the command is executed.
+` ` ` --rm ` ` ` - Removes the container as soon as the command is executed.
 
-` --volume ` - This parameter allows to mount a Host machine directory into the container. In this case, ~/1999_RB216 is where the inputs are and where the results will be, ":" indicates the path of volume inside the container (for this image should always be /data).
+` ` ` --volume ` ` ` - This parameter allows to mount a Host machine directory into the container. In this case, ~/1999_RB216 is where the inputs are and where the results will be, ":" indicates the path of volume inside the container (for this image should always be /data).
 
-` linea/nima:7 ` : Image that will be used to create the container. linea is the user in docker cloud, nima is the repository, :7 indicates the tag which will be used. An image can have several tags, in this image the tag represents the version of NIMA. The list of available tags can be found in [This link](https://cloud.docker.com/u/linea/repository/docker/linea/nima/tags).
+` ` ` linea/nima:7 ` ` ` : Image that will be used to create the container. linea is the user in docker cloud, nima is the repository, :7 indicates the tag which will be used. An image can have several tags, in this image the tag represents the version of NIMA. The list of available tags can be found in [This link](https://cloud.docker.com/u/linea/repository/docker/linea/nima/tags).
 
-` python run.py ` Command that will be executed inside container.
+` ` ` python run.py ` ` ` Command that will be executed inside container.
+
+Another way to run is using the --path parameter in the run.py script
+this parameter is used when it is not possible to mount the /data directory or when it is necessary to use absolute paths. the inputs directory must be mounted in the container.
+
+in this example "/tmp/1999RB216" is the directory as the inputs, it is mounted in the container keeping the same absolute path, and then it is passed as a parameter to the script. internally the script will create a symbolic link from the absolute path to /data.
+
+```shell
+docker run -it --rm --name nima --volume /tmp/1999RB216:/tmp/1999RB216 linea/nima:7 python run.py --path /tmp/1999RB216/
+```
 
 ### Script run.py
 
-This script is responsible for running all NIMA programs and custom scripts that are in the directory ` /app/NIMAv7_user ` . The file **input.txt**, that contains the parameters and the list of inputs, is searched in the beginning of the execution and the respective output is in the log file *nima.log*
+This script is responsible for running all NIMA programs and custom scripts that are in the directory `` `/app/NIMAv7_user` ``. The file **input.txt**, that contains the parameters and the list of inputs, is searched in the beginning of the execution and the respective output is in the log file *nima.log*
 
 ### Parallel Execution
 
@@ -69,8 +78,7 @@ To execute multiple objects in parallel, simply create multiple instances of the
 
 ### input.txt
 
-The description of the parameters is in the file itself, and it can be seen in [this template](https://github.com/linea-it/nima/blob/master/input_template.txt).
-
+The description of the parameters is in the file itself, and it can be seen in [this template](https://github.com/linea-it/nima/blob/master/input_template.txt). 
 * Each line represents one parameter.
 * The value of the parameter has a limit of 67 characters
 * The first five parameters refer to the input directory **should not be changed!**.
@@ -112,7 +120,7 @@ In the case of MPC the user has to create a ascii file with the next parameters 
 07. Mean anomaly (degrees)
 08. Ascending node (degrees)
 09. Inclination (degrees)
-10. Eccentricity
+10. Eccentricity 
 11. Semimajor axis (au)
 12. Absolute magnitude
 13. Phase slope
@@ -162,7 +170,7 @@ Main output files
 
 ## Monitoring
 
-To monitor the execution of the command ` run.py ` , all output from this script is in /data/nima.log, open a new terminal on the host machine and execute:
+To monitor the execution of the command ` ` ` run.py ` ` `, all output from this script is in /data/nima.log, open a new terminal on the host machine and execute: 
 
 ```bash
 tail -f ~/1999_RB216/nima.log
@@ -183,7 +191,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
 ```
 
-You can also check resource consumption on the host in real time. ` docker stats ` , shows information such as CPU, Memory and I/O and Network consumption.
+You can also check resource consumption on the host in real time. `` `docker stats` ``, shows information such as CPU, Memory and I/O and Network consumption.
 
 ```bash
 

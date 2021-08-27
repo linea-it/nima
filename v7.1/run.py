@@ -244,7 +244,7 @@ def NIMAmanager(inputParametersFile, log_file):
 if __name__ == "__main__":
 
     # Verifica se tem o parametro path,
-    # Se o parametro existir, será criado um link simbolico entre o path e o /data
+    # Se o parametro existir, sera criado um link simbolico entre o path e o /data
     # desta forma o programa sempre executara considerendo o path /data.
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--path", default=None, required=False, help="Path where the inputs are and where the outputs will be. must be the path as it is mounted on the volume, should be used when it is not possible to mount the volume as /data. example the inputs are in /archive/asteroids/Eris and this path is mounted inside the container the parameter --path must have this value --path /archive/asteroids/Eris, the program will create a link from this path to /data.")

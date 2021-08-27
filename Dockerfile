@@ -7,17 +7,17 @@ ENV DIR_RESULTS=/data
 ENV DIR_INPUTS=/data
 
 RUN apt-get update && apt-get install -y  \
-                gfortran \
-                csh \
-                gnuplot \
-                ghostscript \
-                libfreetype6-dev \
-                pkg-config \
-                libxft-dev \
-                imagemagick \
-                gnuplot \
-                vim \
-            && rm -rf /var/lib/apt/lists/*
+        gfortran \
+        csh \
+        gnuplot \
+        ghostscript \
+        libfreetype6-dev \
+        pkg-config \
+        libxft-dev \
+        imagemagick \
+        gnuplot \
+        vim \
+        && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir $APP_PATH
 
@@ -33,7 +33,7 @@ RUN pip install -r requirements.txt
 
 COPY . $APP_PATH
 
-# Install NIMA Public
+# # Install NIMA Public
 # RUN set -ex \
 #         && cd $APP_PATH \
 #         && tar -xvf NIMAv7_public.tar.gz \
@@ -65,7 +65,7 @@ RUN set -ex \
         && tar -xvf nima_v7_public_compiled.tar.gz
 
 
-# # Install NIMA User
+# Install NIMA User
 # RUN set -ex \
 #         && cd $APP_PATH \
 #         && tar -xvf NIMAv7_user.tar.gz \
