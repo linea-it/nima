@@ -28,7 +28,7 @@ In this example the target is 1999 RB216, and its directory is ~/1999_RB216.
 This sample directory can be downloaded from this [link](https://github.com/linea-it/nima/blob/master/example.zip)
 
 ```shell
-docker run -it --rm --volume ~/1999_RB216:/data linea/nima:7 python run.py
+docker run -it --rm --volume ~/1999_RB216:/data linea/nima:7.1 python run.py
 ```
 
 Explaining the command.
@@ -51,7 +51,7 @@ this parameter is used when it is not possible to mount the /data directory or w
 in this example "/tmp/1999RB216" is the directory as the inputs, it is mounted in the container keeping the same absolute path, and then it is passed as a parameter to the script. internally the script will create a symbolic link from the absolute path to /data.
 
 ```shell
-docker run -it --rm --name nima --volume /tmp/1999RB216:/tmp/1999RB216 linea/nima:7 python run.py --path /tmp/1999RB216/
+docker run -it --rm --name nima --volume /tmp/1999RB216:/tmp/1999RB216 linea/nima:7.1 python run.py --path /tmp/1999RB216/
 ```
 
 ### Script run.py
@@ -204,7 +204,7 @@ docker stats
 
 ```bash
 
-docker build -t linea/nima:7 .
+docker build -t linea/nima:7.1 .
 
 ```
 
@@ -214,7 +214,7 @@ To execute *run.py* in another directory
 
 ```bash
 
-docker run -it --rm --name nima --volume ~/data:/data --volume ~/teste:/app/teste  linea/nima:7 python teste/run.py
+docker run -it --rm --name nima --volume ~/data:/data --volume ~/teste:/app/teste  linea/nima:7.1 python teste/run.py
 ```
 
 ## To do changes in NIMA_V7_user script
